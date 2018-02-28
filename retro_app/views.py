@@ -29,7 +29,7 @@ class UserDetail(mixins.RetrieveModelMixin,
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (permissions.IsAuthenticated)
+    permission_classes = (permissions.IsAuthenticated,)
     
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -72,7 +72,7 @@ class FeedbackList(mixins.ListModelMixin,
     
     queryset = Retro360Feedback.objects.all()
     serializer_class = FeedbackSerializer
-    permission_classes = (permissions.IsAuthenticated)
+    permission_classes = (permissions.IsAuthenticated,)
     
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -89,7 +89,7 @@ class FeedbackDetail(mixins.RetrieveModelMixin,
     """
     queryset = Retro360Feedback.objects.all()
     serializer_class = FeedbackSerializer
-    permission_classes = (permissions.IsAuthenticated)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
