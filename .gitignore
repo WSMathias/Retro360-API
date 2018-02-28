@@ -6,6 +6,8 @@
 *.pot
 *.py[co]
 .tox/
+*/migrations
+!*/migrations/__init__.py
 __pycache__
 MANIFEST
 dist/
