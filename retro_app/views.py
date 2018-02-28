@@ -12,30 +12,9 @@ from rest_framework.views import APIView
 # from rest_framework.decorators import api_view, permission_classes
 # from rest_framework.permissions import AllowAny
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    List Users or create User
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = (IsAuthenticatedOrSignup,)
-
-class BoardFeedbackViewset(viewsets.ModelViewSet):
-    """
-    lists Feedbacks for requested board
-    """
-    queryset = Retro360Feedback.objects.all()
-    serializer_class = FeedbackSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def list(self, request,board_id=None, *args, **kwargs):
-        instance = self.get_queryset().filter(board__id=board_id)
-        serializer = self.get_serializer(instance,many=True)
-        return Response(serializer.data,status=status.HTTP_200_OK)
-
 class UserList(generics.ListCreateAPIView):
     """
-    List and create users
+    List  and Create Users
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -71,11 +50,24 @@ class Logout(APIView):
         request.user.auth_token.delete()
         return Response(status=status.HTTP_200_OK)
 
+class BoardFeedbackViewset(viewsets.ModelViewSet):
+    """
+    List Feedbacks for requested Board
+    """
+    queryset = Retro360Feedback.objects.all()
+    serializer_class = FeedbackSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def list(self, request,board_id=None, *args, **kwargs):
+        instance = self.get_queryset().filter(board__id=board_id)
+        serializer = self.get_serializer(instance,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
 class FeedbackList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
     """
-    List feedbacks and creates feedback
+    List Feedbacks and Create Feedback
     """
     
     queryset = Retro360Feedback.objects.all()
@@ -93,7 +85,7 @@ class FeedbackDetail(mixins.RetrieveModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
     """
-    retriew, update and distroy Feedback
+    Retriew, Update and Delete Feedback
     """
     queryset = Retro360Feedback.objects.all()
     serializer_class = FeedbackSerializer
@@ -113,7 +105,7 @@ class BoardList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
     """
-        Get list and create Board
+        List Boards and Create Board
     """
     
     queryset = Retro360Board.objects.all()
@@ -131,7 +123,7 @@ class BoardDetail(mixins.RetrieveModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
     """
-        retriew, update and delete Board
+        Retriew, Update and Delete Board
     """
     queryset = Retro360Board.objects.all()
     serializer_class = BoardSerializer
