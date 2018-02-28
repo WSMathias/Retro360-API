@@ -1,0 +1,12 @@
+{% extends 'retro/retro_base.html' %}
+{% block body_block %}
+    <div class="jumbotron">
+        <h2>Users List</h2>
+        <ol>
+            {% for user in retrousers %}
+            <h3><li><a href="{% url 'retro:details' pk=user.pk %}">{{user.first_name}}</a></li></h3>
+            {% endfor %}
+        </ol>
+        <a href="{% url 'retro:create' %}" class="btn btn-info">Add</a>
+    </div>
+{% endblock %}

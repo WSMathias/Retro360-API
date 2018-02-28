@@ -1,0 +1,10 @@
+{% extends 'retro/retro_base.html' %}
+{% block body_block %}
+    <div class="jumbotron">
+        <h3>delete {{ retrouser }}?</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+    </div>
+{% endblock %}

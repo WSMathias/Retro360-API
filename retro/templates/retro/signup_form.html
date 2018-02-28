@@ -1,0 +1,16 @@
+{% extends 'retro/retro_base.html' %}
+{% block body_block %}
+    <div class="container">
+        {% if not registered %}
+        <form method="post">
+            {{user_form.as_p}}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="SignUp">
+        </form>
+        {% else %}
+        <div class="jumbotron center">
+            <h3>Welcome to Retro-360</h3>
+        </div>
+        {% endif %}
+    </div> 
+{% endblock %}

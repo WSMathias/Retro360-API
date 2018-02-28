@@ -1,0 +1,13 @@
+{% extends 'retro/retro_base.html' %}
+{% block body_block %}
+    <div class="jumbotron">
+        <h2>Retro User details:</h2>
+        <ul>   
+            <li>Full Name:{{retrouser.first_name}} {{retrouser.last_name}}</li>
+            <li>Mobile :{{ retrouser.mobile}}</li>
+            <li>Email : {{ retrouser.email}}</li>
+        </ul>
+        <a href="{% url 'retro:update' pk=retrouser.pk %}" class="btn btn-warning">Update</a>
+        <a href="{% url 'retro:delete' pk=retrouser.pk %}" class="btn btn-danger">Deleted</a>
+    </div>
+{% endblock %}

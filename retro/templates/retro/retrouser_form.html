@@ -1,0 +1,18 @@
+{% extends 'retro/retro_base.html' %}
+{% block body_block %}
+    <div class="jumbotron center">
+        <h2>
+            {% if not form.instance.pk %}
+                Create Retro user
+            {% else %}
+                Update Retro User
+            {% endif %}
+        </h2>
+
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+{% endblock %}
