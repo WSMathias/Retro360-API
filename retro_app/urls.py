@@ -15,5 +15,5 @@ urlpatterns = [
     path('feedback/',views.FeedbackList.as_view()),    
     path('feedback/<int:pk>/',views.FeedbackDetail.as_view()),
     path('admin/', admin.site.urls),
-    path('board/<board_id>/feedback/',views.BoardFeedbackViewset.as_view({'get':'list'})),
+    path('board/<board_id>/feedbacks/',views.BoardFeedbackViewset.as_view({'get':'list'})),
 ]

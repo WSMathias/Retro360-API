@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
     boards = serializers.PrimaryKeyRelatedField(many=True, queryset=Retro360Board.objects.all())
     password = serializers.CharField(write_only=True)
     email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
-    is_staff = serializers.BooleanField(write_only=True)
+    is_staff = serializers.BooleanField(read_only=True)
     class Meta:
         model = User
         fields = ('id', 'username', 'first_name','last_name','email','is_staff','boards','password')
