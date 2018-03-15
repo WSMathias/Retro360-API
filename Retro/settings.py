@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_jwt',
     'django_filters', # for filtering
+    'corsheaders' # to allow cross origin
 ]
 
 PASSWORD_HASHERS = [
@@ -59,6 +60,7 @@ PASSWORD_HASHERS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,6 +69,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'Retro.urls'
 
@@ -108,7 +112,6 @@ DATABASES = {
         'port': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -165,9 +168,9 @@ REST_FRAMEWORK = {
     # 'PAGE_SIZE': 10,
 }
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=5),  # Token expires * minutes after being issued
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=3),  # Token expires * minutes after being issued
      'JWT_ALLOW_REFRESH': True,
-     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(minutes=5),  # Token can be refreshed up to * minutes after being issued
+     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(minutes=30),  # Token can be refreshed up to * minutes after being issued
      'JWT_AUTH_HEADER_PREFIX': 'Bearer'
  }
 
